@@ -1,0 +1,225 @@
+=======================================================================
+  SUPERGROKSNIPV1 - QUICK START GUIDE
+  Python 3.13 Windows Edition
+=======================================================================
+
+YOUR SYSTEM:
+  ✅ Python 3.13.7 (64-bit)
+  ✅ Windows 11 Home
+  ✅ Installation Path: Z:\pythonSnipe
+
+=======================================================================
+  STEP 1: DOWNLOAD ALL FILES
+=======================================================================
+
+Save these files to Z:\pythonSnipe:
+
+Root Directory (Z:\pythonSnipe\):
+  [ ] setup.bat
+  [ ] requirements.txt
+  [ ] .env.example
+  [ ] README.md
+  [ ] QUICK_START.txt (this file)
+
+Config Directory (Z:\pythonSnipe\config\):
+  [ ] config_live.yaml
+  [ ] config_paper.yaml
+
+Source Directory (Z:\pythonSnipe\src\):
+  [ ] main_paper.py
+  [ ] main_live.py
+  [ ] config_loader.py
+  [ ] wallet_manager.py
+
+Utils Directory (Z:\pythonSnipe\src\utils\):
+  [ ] logger.py
+  [ ] metrics.py
+
+=======================================================================
+  STEP 2: RUN AUTOMATIC SETUP
+=======================================================================
+
+1. Right-click: setup.bat
+2. Select: "Run as administrator"
+3. Wait 5-10 minutes
+4. Setup will create everything automatically
+
+What gets installed:
+  ✅ Virtual environment (Python 3.13)
+  ✅ All packages (Solana, BSC, ML, etc.)
+  ✅ Directory structure
+  ✅ Launcher scripts
+
+=======================================================================
+  STEP 3: CONFIGURE YOUR WALLET
+=======================================================================
+
+Edit: Z:\pythonSnipe\.env
+
+Your Helius API is already set:
+  HELIUS_API_KEY=914d95f5-0185-4274-8e00-c3a3498b68ed
+
+Add your wallet (CHOOSE ONE):
+
+Option 1 - Private Key (recommended):
+  WALLET_PRIVATE_KEY=your_private_key_here
+
+Option 2 - Seed Phrase (12 or 24 words):
+  WALLET_SEED_PHRASE=word1 word2 word3 ... word12
+
+How to get private key from Phantom:
+  1. Open Phantom wallet
+  2. Settings → Security & Privacy
+  3. Export Private Key
+  4. Copy entire key
+  5. Paste in .env file
+
+=======================================================================
+  STEP 4: SET YOUR INVESTMENT AMOUNTS
+=======================================================================
+
+Edit: Z:\pythonSnipe\config\config_live.yaml
+
+Find this section:
+  investment:
+    amount_sol: 0.05      # Change to any amount
+    amount_bnb: 0.01      # Change to any amount
+
+Examples:
+  Testing:      0.01 SOL / 0.005 BNB
+  Conservative: 0.05 SOL / 0.01 BNB
+  Moderate:     0.10 SOL / 0.05 BNB
+  Aggressive:   0.50 SOL / 0.10 BNB
+
+Also set take-profit and stop-loss:
+  strategy:
+    take_profit: 300    # 300% = 3x gain
+    stop_loss: 20       # 20% loss limit
+
+=======================================================================
+  STEP 5: START TRADING
+=======================================================================
+
+PAPER TRADING (Test First - Recommended):
+  ✅ Double-click: RUN_PAPER_TRADING.bat
+  ✅ Uses REAL market prices
+  ✅ NO trades executed
+  ✅ Safe for testing
+  ✅ Perfect for beginners
+
+LIVE TRADING (Real Money - Use Caution):
+  ⚠️  Double-click: RUN_LIVE_TRADING.bat
+  ⚠️  REAL MONEY - TRADES EXECUTE
+  ⚠️  Start with small amounts!
+  ⚠️  Monitor closely!
+
+=======================================================================
+  SWITCHING BETWEEN SOL AND BSC
+=======================================================================
+
+Edit config file and change:
+  network: solana    # For Solana
+  network: bsc       # For BSC
+
+Then restart the bot.
+
+=======================================================================
+  STOPPING THE BOT
+=======================================================================
+
+Press: Ctrl + C
+
+The bot will:
+  ✅ Stop monitoring
+  ✅ Close gracefully
+  ✅ Save all data
+  ✅ Show session stats
+
+NEVER close window directly - always use Ctrl+C
+
+=======================================================================
+  CHECKING LOGS
+=======================================================================
+
+Logs are saved to:
+  Z:\pythonSnipe\data\logs\
+
+Paper trading logs:
+  PaperBot_YYYYMMDD.log
+
+Live trading logs:
+  LiveBot_YYYYMMDD.log
+
+Trade history:
+  Z:\pythonSnipe\data\trades\
+
+=======================================================================
+  TROUBLESHOOTING
+=======================================================================
+
+"Python not found":
+  → Install Python 3.13 from python.org
+  → Check "Add to PATH" during install
+
+"pip install failed":
+  → Run setup.bat as administrator
+  → Check internet connection
+
+"Wallet import failed":
+  → Check private key has no spaces
+  → Verify format in Phantom first
+  → Try seed phrase instead
+
+"Insufficient balance":
+  → Add funds to wallet
+  → Check correct network (SOL/BNB)
+  → Verify wallet address
+
+"Module not found":
+  → Activate virtual environment:
+    cd Z:\pythonSnipe
+    venv\Scripts\activate.bat
+  → Then run bot
+
+=======================================================================
+  SAFETY REMINDERS
+=======================================================================
+
+  ⚠️  START WITH PAPER TRADING
+  ⚠️  USE SMALL AMOUNTS (0.01-0.05 SOL)
+  ⚠️  NEVER RISK MORE THAN YOU CAN LOSE
+  ⚠️  MONITOR REGULARLY
+  ⚠️  KEEP PRIVATE KEYS SECURE
+  ⚠️  DON'T DISABLE SAFETY FEATURES
+
+=======================================================================
+  SUPPORT & HELP
+=======================================================================
+
+1. Read full documentation: README.md
+2. Check logs: Z:\pythonSnipe\data\logs\
+3. Review config: Z:\pythonSnipe\config\
+4. Verify wallet: Use blockchain explorer
+
+=======================================================================
+  READY TO START?
+=======================================================================
+
+Checklist:
+  [ ] All files downloaded to Z:\pythonSnipe
+  [ ] Ran setup.bat as administrator
+  [ ] Configured wallet in .env
+  [ ] Set investment amounts in config
+  [ ] Tested with paper trading first
+
+If all checked, you're ready to go! 🚀
+
+Start with: RUN_PAPER_TRADING.bat
+
+=======================================================================
+
+Questions? Check README.md for detailed information.
+
+Good luck and trade safely! 💰
+
+=======================================================================

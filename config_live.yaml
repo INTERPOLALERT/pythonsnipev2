@@ -1,0 +1,147 @@
+# SuperGrokSnipV1 - Live Trading Configuration
+# REAL MONEY - USE WITH CAUTION
+
+# ============================================================
+# BLOCKCHAIN SELECTION
+# ============================================================
+network: solana  # Options: solana, bsc
+
+# ============================================================
+# INVESTMENT SETTINGS
+# ============================================================
+investment:
+  # Amount per trade (user customizable)
+  amount_sol: 0.05        # SOL per trade
+  amount_bnb: 0.01        # BNB per trade (when using BSC)
+  
+  # Safety limits
+  min_balance: 0.1        # Minimum wallet balance to continue
+  max_daily_sol: 2.0      # Maximum SOL to spend per day
+  max_daily_bnb: 0.5      # Maximum BNB to spend per day
+
+# ============================================================
+# TRADING STRATEGY
+# ============================================================
+strategy:
+  take_profit: 300        # Take profit at 300% (3x) gain
+  stop_loss: 20           # Stop loss at 20% loss
+  trailing_stop: true     # Enable trailing stop
+  trailing_distance: 20   # Trailing stop distance (%)
+
+# ============================================================
+# SAFETY FILTERS (5 LAYERS)
+# ============================================================
+safety:
+  max_open_positions: 1              # Only 1 position at a time
+  safety_threshold: 70               # Minimum safety score (0-100)
+  
+  # Layer 1: RugCheck
+  rugcheck_min_score: 7              # Minimum RugCheck score (0-10)
+  
+  # Layer 2: Liquidity
+  min_liquidity_usd: 5000            # Minimum liquidity in USD
+  
+  # Layer 3: Holders
+  min_holders: 50                    # Minimum number of holders
+  max_top_holder_percent: 60         # Max % held by single wallet
+  
+  # Layer 4: Token Age
+  max_token_age_minutes: 5           # Only snipe fresh tokens
+  
+  # Layer 5: Contract Safety
+  check_honeypot: true               # Check for honeypot scams
+  check_renounced: false             # Don't require renounced ownership
+
+# ============================================================
+# BLOCKCHAIN MONITORING
+# ============================================================
+monitoring:
+  # Solana settings
+  poll_interval_sol: 0.5             # Seconds between Solana checks
+  use_websocket_sol: true            # Use WebSocket for real-time
+  
+  # BSC settings
+  poll_interval_bsc: 3.0             # Seconds between BSC checks
+  use_websocket_bsc: false           # BSC WebSocket (if available)
+
+# ============================================================
+# DEV WALLET ANALYZER
+# ============================================================
+dev_analyzer:
+  enabled: true                      # Enable developer analysis
+  min_score: 70                      # Minimum dev trust score
+  
+  # Scoring weights
+  weights:
+    rug_penalty: -30                 # Penalty for past rugs
+    pump_bonus: 50                   # Bonus for successful projects
+    balance_low_penalty: -20         # Penalty for low balance
+    balance_high_bonus: 30           # Bonus for high balance
+    wallet_age_penalty: -20          # Penalty for new wallets
+    kol_connection_bonus: 20         # Bonus for KOL connections
+
+# ============================================================
+# AI/ML PREDICTIONS
+# ============================================================
+# LEP: Liquidity Event Predictor (6-48h pump timing)
+lep:
+  enabled: true                      # Enable LEP predictions
+  min_confidence: 0.6                # Minimum confidence (0-1)
+  use_heuristics: true               # Use advanced heuristics (Python 3.13)
+
+# Cascade: Viral Detection (GNN)
+cascade:
+  enabled: true                      # Enable viral detection
+  min_virality_score: 75             # Minimum virality score
+
+# ============================================================
+# EXECUTION ENGINE (MEV PROTECTION)
+# ============================================================
+execution:
+  # Jito Protection (Solana)
+  use_jito: true                     # Use Jito bundles
+  force_jito: true                   # ALWAYS use Jito (recommended)
+  jito_tip_sol: 0.01                 # Priority fee in SOL
+  
+  # Slippage tolerance
+  slippage: 5.0                      # Maximum slippage (%)
+  
+  # Gas settings (BSC)
+  gas_price_gwei: 5                  # BSC gas price in Gwei
+  gas_limit: 500000                  # BSC gas limit
+
+# ============================================================
+# RPC ENDPOINTS
+# ============================================================
+rpc:
+  # Solana (Helius pre-configured)
+  solana_endpoints:
+    - https://mainnet.helius-rpc.com/?api-key=914d95f5-0185-4274-8e00-c3a3498b68ed
+    - https://api.mainnet-beta.solana.com
+  
+  solana_websocket: wss://mainnet.helius-rpc.com/?api-key=914d95f5-0185-4274-8e00-c3a3498b68ed
+  
+  # BSC
+  bsc_endpoints:
+    - https://bsc-dataseed1.binance.org
+    - https://bsc-dataseed2.binance.org
+    - https://bsc-dataseed.binance.org
+
+# ============================================================
+# TELEGRAM ALERTS
+# ============================================================
+telegram:
+  enabled: true                      # Enable Telegram notifications
+  alert_on_buy: true                 # Alert when buying
+  alert_on_sell: true                # Alert when selling
+  alert_on_rug_detected: true        # Alert when rug detected
+  alert_on_error: true               # Alert on errors
+
+# ============================================================
+# LOGGING
+# ============================================================
+logging:
+  console_level: INFO                # Console log level
+  file_level: DEBUG                  # File log level
+  save_trades: true                  # Save trade history to file
+  max_log_files: 30                  # Keep logs for 30 days

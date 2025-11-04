@@ -1,0 +1,127 @@
+# SuperGrokSnipV1 - Paper Trading Configuration
+# Safe testing with REAL prices, NO trades executed
+
+# ============================================================
+# PAPER TRADING MODE
+# ============================================================
+paper_mode:
+  enabled: true                      # Paper mode active
+  initial_balance_sol: 10.0          # Starting SOL balance
+  initial_balance_bnb: 1.0           # Starting BNB balance
+  use_real_prices: true              # Use real market prices
+  simulate_slippage: true            # Simulate realistic slippage
+
+# ============================================================
+# BLOCKCHAIN SELECTION
+# ============================================================
+network: solana  # Options: solana, bsc
+
+# ============================================================
+# INVESTMENT SETTINGS (SIMULATED)
+# ============================================================
+investment:
+  amount_sol: 0.05                   # SOL per trade (simulated)
+  amount_bnb: 0.01                   # BNB per trade (simulated)
+  min_balance: 0.1
+  max_daily_sol: 2.0
+  max_daily_bnb: 0.5
+
+# ============================================================
+# TRADING STRATEGY (SAME AS LIVE)
+# ============================================================
+strategy:
+  take_profit: 300                   # 300% gain
+  stop_loss: 20                      # 20% loss
+  trailing_stop: true
+  trailing_distance: 20
+
+# ============================================================
+# SAFETY FILTERS (SAME AS LIVE)
+# ============================================================
+safety:
+  max_open_positions: 1
+  safety_threshold: 70
+  rugcheck_min_score: 7
+  min_liquidity_usd: 5000
+  min_holders: 50
+  max_top_holder_percent: 60
+  max_token_age_minutes: 5
+  check_honeypot: true
+  check_renounced: false
+
+# ============================================================
+# MONITORING (SAME AS LIVE)
+# ============================================================
+monitoring:
+  poll_interval_sol: 0.5
+  use_websocket_sol: true
+  poll_interval_bsc: 3.0
+  use_websocket_bsc: false
+
+# ============================================================
+# DEV ANALYZER (SAME AS LIVE)
+# ============================================================
+dev_analyzer:
+  enabled: true
+  min_score: 70
+  weights:
+    rug_penalty: -30
+    pump_bonus: 50
+    balance_low_penalty: -20
+    balance_high_bonus: 30
+    wallet_age_penalty: -20
+    kol_connection_bonus: 20
+
+# ============================================================
+# AI/ML (SAME AS LIVE)
+# ============================================================
+lep:
+  enabled: true
+  min_confidence: 0.6
+  use_heuristics: true
+
+cascade:
+  enabled: true
+  min_virality_score: 75
+
+# ============================================================
+# EXECUTION (DISABLED IN PAPER MODE)
+# ============================================================
+execution:
+  use_jito: false                    # Jito disabled (paper mode)
+  force_jito: false
+  jito_tip_sol: 0
+  slippage: 5.0
+  gas_price_gwei: 5
+  gas_limit: 500000
+
+# ============================================================
+# RPC ENDPOINTS (SAME AS LIVE)
+# ============================================================
+rpc:
+  solana_endpoints:
+    - https://mainnet.helius-rpc.com/?api-key=914d95f5-0185-4274-8e00-c3a3498b68ed
+    - https://api.mainnet-beta.solana.com
+  solana_websocket: wss://mainnet.helius-rpc.com/?api-key=914d95f5-0185-4274-8e00-c3a3498b68ed
+  bsc_endpoints:
+    - https://bsc-dataseed1.binance.org
+    - https://bsc-dataseed2.binance.org
+
+# ============================================================
+# TELEGRAM (OPTIONAL IN PAPER MODE)
+# ============================================================
+telegram:
+  enabled: false                     # Disabled by default for paper
+  alert_on_buy: false
+  alert_on_sell: false
+  alert_on_rug_detected: false
+  alert_on_error: false
+
+# ============================================================
+# LOGGING
+# ============================================================
+logging:
+  console_level: INFO
+  file_level: DEBUG
+  save_trades: true
+  max_log_files: 30

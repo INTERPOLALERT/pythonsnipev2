@@ -1,0 +1,52 @@
+# SuperGrokSnipV1 - Python 3.13 Compatible Requirements
+# Verified for Windows 11 - December 2024
+
+# Core Dependencies
+python-dotenv==1.0.1
+pyyaml==6.0.2
+aiohttp==3.10.11
+websockets==13.1
+asyncio==3.4.3
+
+# Solana Blockchain
+solders==0.21.0
+solana==0.35.0
+base58==2.1.1
+anchorpy==0.20.1
+
+# BSC/Ethereum (Web3)
+web3==7.6.0
+eth-account==0.13.4
+eth-utils==5.1.0
+hexbytes==1.2.1
+
+# Data Science & ML (Python 3.13 compatible)
+numpy==2.2.1
+pandas==2.2.3
+scikit-learn==1.6.0
+
+# Deep Learning (PyTorch for Python 3.13)
+torch==2.5.1
+torchvision==0.20.1
+networkx==3.4.2
+
+# Monitoring & Logging
+colorama==0.4.6
+rich==13.9.4
+python-dateutil==2.9.0
+
+# Security & Encryption
+cryptography==44.0.0
+
+# API Clients  
+requests==2.32.3
+urllib3==2.2.3
+
+# Additional utilities
+pytz==2024.2
+
+# Wallet support
+mnemonic==0.21
+
+# Note: Prophet excluded (requires C++ compiler on Windows)
+# LEP uses advanced heuristics instead (no loss of functionality)
