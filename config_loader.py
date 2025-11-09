@@ -14,8 +14,10 @@ class TradingConfig:
     """Trading configuration with all settings"""
     
     def __init__(self, config_file: str = "config_live.yaml"):
-        self.config_path = Path("Z:/pythonSnipe/config") / config_file
-        
+        # Get project root directory (where this file is located)
+        project_root = Path(__file__).parent.absolute()
+        self.config_path = project_root / config_file
+
         if not self.config_path.exists():
             raise FileNotFoundError(f"Config file not found: {self.config_path}")
         
@@ -163,14 +165,31 @@ class TradingConfig:
 def load_env():
     """Load environment variables from .env file"""
     from dotenv import load_dotenv
-    env_path = Path("Z:/pythonSnipe/.env")
+    # Get project root directory
+    project_root = Path(__file__).parent.absolute()
+    env_path = project_root / ".env"
     if env_path.exists():
         load_dotenv(env_path)
         print("✅ Environment variables loaded")
         return True
     else:
-        print("⚠️  .env file not found at Z:/pythonSnipe/.env")
+        print(f"⚠️  .env file not found at {env_path}")
+        print("   Creating from .env.example...")
+        # Try to copy from .env.example
+        example_path = project_root / ".env.example"
+        if example_path.exists():
+            import shutil
+            shutil.copy(example_path, env_path)
+            print(f"✅ Created .env file. Please edit {env_path} with your wallet details.")
+            load_dotenv(env_path)
+            return True
         return False
+
+
+# Get project root directory
+def get_project_root() -> Path:
+    """Get project root directory"""
+    return Path(__file__).parent.absolute()
 
 
 # Example usage

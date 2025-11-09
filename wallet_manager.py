@@ -52,9 +52,11 @@ class WalletManager:
     
     def __init__(self, network: str = "solana"):
         self.network = network
-        self.data_dir = Path("Z:/pythonSnipe/data")
+        # Get project root and create data directory
+        project_root = Path(__file__).parent.absolute()
+        self.data_dir = project_root / "data"
         self.data_dir.mkdir(parents=True, exist_ok=True)
-        
+
         self.wallet_file = self.data_dir / "wallet.enc"
         self.cipher = self._init_cipher()
         
@@ -70,7 +72,8 @@ class WalletManager:
             # Generate new key
             key = Fernet.generate_key()
             # Save to .env
-            env_path = Path("Z:/pythonSnipe/.env")
+            project_root = Path(__file__).parent.absolute()
+            env_path = project_root / ".env"
             if env_path.exists():
                 with open(env_path, 'a') as f:
                     f.write(f"\nENCRYPTION_KEY={key.decode()}\n")
@@ -78,7 +81,7 @@ class WalletManager:
             print("Generated new encryption key")
         else:
             key = key.encode() if isinstance(key, str) else key
-        
+
         return Fernet(key)
     
     def load_from_env(self) -> bool:
@@ -292,8 +295,9 @@ class WalletManager:
 # Example usage
 if __name__ == "__main__":
     from dotenv import load_dotenv
-    load_dotenv("Z:/pythonSnipe/.env")
-    
+    project_root = Path(__file__).parent.absolute()
+    load_dotenv(project_root / ".env")
+
     wallet = WalletManager(network="solana")
     if wallet.load_from_env():
         wallet.display_wallet_info()
