@@ -48,7 +48,7 @@ echo.
 pause
 
 REM Run the live trading bot
-python main_live.py
+python src\main_live.py
 
 REM Pause at the end so user can see any errors
 echo.

@@ -14,7 +14,7 @@ class MetricsTracker:
     def __init__(self, mode: str = "live"):
         self.mode = mode
         # Get project root (parent of utils directory) and create trades directory
-        project_root = Path(__file__).parent.parent.absolute()
+        project_root = Path(__file__).parent.parent.parent.absolute()
         self.metrics_dir = project_root / "data" / "trades"
         self.metrics_dir.mkdir(parents=True, exist_ok=True)
 

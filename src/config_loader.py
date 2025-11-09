@@ -14,9 +14,9 @@ class TradingConfig:
     """Trading configuration with all settings"""
     
     def __init__(self, config_file: str = "config_live.yaml"):
-        # Get project root directory (where this file is located)
-        project_root = Path(__file__).parent.absolute()
-        self.config_path = project_root / config_file
+        # Get project root directory (parent of src/)
+        project_root = Path(__file__).parent.parent.absolute()
+        self.config_path = project_root / "config" / config_file
 
         if not self.config_path.exists():
             raise FileNotFoundError(f"Config file not found: {self.config_path}")
@@ -165,8 +165,8 @@ class TradingConfig:
 def load_env():
     """Load environment variables from .env file"""
     from dotenv import load_dotenv
-    # Get project root directory
-    project_root = Path(__file__).parent.absolute()
+    # Get project root directory (parent of src/)
+    project_root = Path(__file__).parent.parent.absolute()
     env_path = project_root / ".env"
     if env_path.exists():
         load_dotenv(env_path)
@@ -189,7 +189,7 @@ def load_env():
 # Get project root directory
 def get_project_root() -> Path:
     """Get project root directory"""
-    return Path(__file__).parent.absolute()
+    return Path(__file__).parent.parent.absolute()
 
 
 # Example usage
