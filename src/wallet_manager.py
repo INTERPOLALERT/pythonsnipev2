@@ -52,8 +52,8 @@ class WalletManager:
     
     def __init__(self, network: str = "solana"):
         self.network = network
-        # Get project root and create data directory
-        project_root = Path(__file__).parent.absolute()
+        # Get project root (parent of src/) and create data directory
+        project_root = Path(__file__).parent.parent.absolute()
         self.data_dir = project_root / "data"
         self.data_dir.mkdir(parents=True, exist_ok=True)
 
@@ -72,7 +72,7 @@ class WalletManager:
             # Generate new key
             key = Fernet.generate_key()
             # Save to .env
-            project_root = Path(__file__).parent.absolute()
+            project_root = Path(__file__).parent.parent.absolute()
             env_path = project_root / ".env"
             if env_path.exists():
                 with open(env_path, 'a') as f:
@@ -295,7 +295,7 @@ class WalletManager:
 # Example usage
 if __name__ == "__main__":
     from dotenv import load_dotenv
-    project_root = Path(__file__).parent.absolute()
+    project_root = Path(__file__).parent.parent.absolute()
     load_dotenv(project_root / ".env")
 
     wallet = WalletManager(network="solana")

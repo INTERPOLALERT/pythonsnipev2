@@ -35,7 +35,7 @@ class BotLogger:
         
         # File handler (no colors)
         # Get project root (parent of utils directory) and create logs directory
-        project_root = Path(__file__).parent.parent.absolute()
+        project_root = Path(__file__).parent.parent.parent.absolute()
         log_dir = project_root / "data" / "logs"
         log_dir.mkdir(parents=True, exist_ok=True)
 

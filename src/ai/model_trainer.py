@@ -26,7 +26,7 @@ class ModelTrainer:
         self.logger = logger
 
         # Get project root and create models directory
-        project_root = Path(__file__).parent.parent.absolute()
+        project_root = Path(__file__).parent.parent.parent.absolute()
         self.models_dir = project_root / "data" / "models"
         self.models_dir.mkdir(parents=True, exist_ok=True)
 

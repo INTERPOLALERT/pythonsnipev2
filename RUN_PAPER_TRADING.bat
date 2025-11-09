@@ -49,7 +49,7 @@ echo Starting Paper Trading Bot...
 echo.
 
 REM Run the paper trading bot
-python main_paper.py
+python src\main_paper.py
 
 REM Pause at the end so user can see any errors
 echo.
